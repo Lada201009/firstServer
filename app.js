@@ -8,13 +8,13 @@ const tasksDB = [
     id: 0,
     name: 'Task1',
     createdAt: '2000-12-01',
-    isDone: true,
+    isDone: false,
   },
   {
     id: 1,
     name: 'Task2',
     createdAt: format (new Date(), 'Y-MM-dd'),
-    isDone: false,
+    isDone: true,
   },
 ];
 class TasksDB {
@@ -22,25 +22,44 @@ class TasksDB {
     this.tasks = [...arr];
   }
 
-  createdTask (newTask) {
-    this.tasks.push({
-      ...newTask,
-      id: uuidv4(),
-      isDone: false,
-      createdAt: format(new Date(), 'Y-MM-dd'),
-    });
-    return this.tasks[this.tasks.length - 1];
+  createTask (newTask) {
+    this.tasks.push({ ...newTask, id: uuidv4(),  isDone: false, createdAt:  format(new Date(), 'Y-MM-dd'),});
+    return this.tasks[this.taskss.length - 1];
+    } 
+    getTasks () {
+      return [...this.tasks];
+    }
+    getTaskById (id) {
+      const foundIndex = this.contacts.findIndex(c => c.id === Number(id));
+      return foundIndex === -1 ? null : this.tasks[foundIndex];
+    }
+    updateTask (id, values) {
+      const foundTaskIndex = this.tasks.findIndex(c => c.id === Number(id));
+      if (foundTaskIndex !== -1) {
+        this.tasks[foundTaskIndex] = {
+          ...this.contacts[foundTaskIndex],
+          ...values,
+        };
+      }
+      return foundTaskIndex === -1 ? null : this.tasks[foundTaskIndex];
   }
-  getTasks () {
-    return [...this.tasks];
+  deleteTask (id) {
+    const foundTaskIndex = this.contacts.findIndex(c => c.id === Number(id));
+    return foundTaskIndex === -1
+      ? null
+      : this.tasks.splice(foundTaskIndex, 1);
   }
 }
+  const tasksDbInstace = new TasksDB(tasksDB);
+  const app = express();
+  app.use(express.json());
 
-const tasksDbInstace = new TasksDB(tasksDB);
-const app = express();
-app.use(express.json());
 
-app.get('/tasks', (req, res)  => {
+  app.get('/', (req, res) => {
+      res.send('app )))');
+    });
+
+ app.get('/tasks', (req, res) => {
   const tasks = tasksDbInstace.getTasks();
   res.status(200).send(tasks);
 });
@@ -49,5 +68,6 @@ app.post('/tasks', (req, res) => {
   const createTask = tasksDbInstace.createTask(req.body);
   res.status(201).send(createTask);
 });
+
 
 module.exports = app;
