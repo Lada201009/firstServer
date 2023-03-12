@@ -22,12 +22,12 @@ class TasksDB {
     this.tasks = [...arr];
   }
 
-  createTask (newTask) {
+  createdTask (newTask) {
     this.tasks.push({ ...newTask, id: uuidv4(),  isDone: false, createdAt:  format(new Date(), 'Y-MM-dd'),});
-    return this.tasks[this.taskss.length - 1];
+    return this.tasks[this.tasks.length - 1];
     } 
     getTasks () {
-      return [...this.tasks];
+     return [...this.tasks];
     }
     getTaskById (id) {
       const foundIndex = this.contacts.findIndex(c => c.id === Number(id));
@@ -65,8 +65,8 @@ class TasksDB {
 });
 
 app.post('/tasks', (req, res) => {
-  const createTask = tasksDbInstace.createTask(req.body);
-  res.status(201).send(createTask);
+  const createdTask = tasksDbInstace.createdTask(req.body);
+  res.status(201).send(createdTask);
 });
 
 
