@@ -17,12 +17,14 @@
   },
   "homepage": "https://github.com/Lada201009/firstServer#readme",
   "devDependencies": {
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.22"
   },
   "dependencies": {
     "date-fns": "^2.29.3",
     "express": "^4.18.2",
-    "uuid": "^9.0.0"
+    "http-errors": "^2.0.0",
+    "uuid": "^9.0.0",
+    "yup": "^1.0.2"
   },
   "main": "app.js",
   "description": ""
