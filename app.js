@@ -8,6 +8,15 @@ const app = express();
 
 app.use(express.json());
 
+app.get('/tasks/', tasksController.getTasks);
+
+app.post(
+  '/tasks',
+  validate.validateTaskOnCreate,
+  tasksController.createTask
+);
+
+app.get('/tasks/:id', tasksController.getTaskById);
 
 app.patch(
   '/tasks/:id',

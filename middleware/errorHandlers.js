@@ -8,7 +8,7 @@ module.exports.validationErrorHandler = (err, req, res, next) => {
 
   module.exports.errorHandler = (err, req, res, next) => {
 
-    if (res.hedersSent){
+    if (res.headersSent){
       return;
     }
 const status = err.status || 500;
