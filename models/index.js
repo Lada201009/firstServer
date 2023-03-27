@@ -1,1 +1,1 @@
-module.exports.TaskDB = require('./Task')
+module.exports.TaskDB = require('./Task');

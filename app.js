@@ -13,8 +13,7 @@ app.get('/tasks/', tasksController.getTasks);
 app.post(
   '/tasks',
   validate.validateTaskOnCreate,
-  tasksController.createTask
-);
+  tasksController.createTask);
 
 app.get('/tasks/:id', tasksController.getTaskById);
 

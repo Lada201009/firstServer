@@ -43,14 +43,14 @@ class TasksDB {
   }
 
   getTaskById (id) {
-    const foundIndex = this.contacts.findIndex(c => c.id === id);
+    const foundIndex = this.tasks.findIndex(c => c.id === id);
     return foundIndex === -1 ? null : this.tasks[foundIndex];
   }
 
 
 
   updateTask (id, values) {
-      const foundTaskIndex = this.tasks.findIndex(c => c.id === Number(id));
+      const foundTaskIndex = this.tasks.findIndex(c => c.id === (id));
       if (foundTaskIndex !== -1) {
         this.tasks[foundTaskIndex] = {
           ...this.tasks[foundTaskIndex],
@@ -60,7 +60,7 @@ class TasksDB {
       return foundTaskIndex === -1 ? null : this.tasks[foundTaskIndex];
   }
   deleteTask (id) {
-    const foundTaskIndex = this.tasks.findIndex(c => c.id === Number(id));
+    const foundTaskIndex = this.tasks.findIndex(c => c.id === (id));
     return foundTaskIndex === -1
       ? null
       : this.tasks.splice(foundTaskIndex, 1);
